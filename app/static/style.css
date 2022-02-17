@@ -1,0 +1,19 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+#canvas {
+	border: 2px solid black;
+}
+
+img {
+	width: 200px;
+	height: 200px;
+}
+
+li {
+	display: list-item;
+	list-style-position: inside;
+}

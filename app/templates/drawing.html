@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>Sketchs Bot</title>
+</head>
+<body>
+<section class="left">
+  <div>
+    <div class="left-title">SKETCHS BOT</div>
+    <form method="post">
+      <canvas id="canvas"></canvas>
+      <button onClick="submit_canvas()" type="button" class="button"
+              action="{{ url_for('main.prediction') }}">
+        Predict
+      </button>
+    </form>
+    <script src="{{ url_for('static', filename='canvas.js') }}"></script>
+  </div>
+  <div class="row">
+    <div class="tools">
+      <button onclick="undo_last()" type="button" class="button">Undo</button>
+      <button onClick="clear_canvas()" type="button" class="button">Clear</button>
+
+    </div>
+  </div>
+</section>
+<section class="right">
+  <div class="description">
+    Dibuja un objeto y el Bot lo adivinará.
+  </div>
+  <div class="image">
+    <img src="{{ url_for('static', filename='hand_image.png') }}"/>
+  </div>
+  <div class="prediction">
+    Predicción
+    <div class="predicted">
+      <ol start="1">
+        <li>predicción 1</li>
+        <li>predicción 2</li>
+        <li>predicción 3</li>
+      </ol>
+    </div>
+  </div>
+  <img src="" id="imgConverted"/>
+</section>
+</body>
+</html>
