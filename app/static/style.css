@@ -1,12 +1,37 @@
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+body {
+	background-color: #E3E3E3;
+	font-family: "Rubik", sans-serif;
+	font-size: 20px;
 }
 
 #canvas {
 	border: 2px solid black;
 }
+
+.content {
+	display: flex;
+	text-align: center;
+}
+
+
+.left {
+	float: left;
+}
+
+.left-title {
+	font-size: 48px;
+	padding: 10px;
+}
+
+
+.right {
+	float: right;
+}
+
+.predicted {
+	font-family: "Roboto Serif", sans-serif;
+}
+
 
 img {
 	width: 200px;
@@ -17,3 +42,4 @@ li {
 	display: list-item;
 	list-style-position: inside;
 }
+

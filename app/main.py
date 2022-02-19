@@ -13,7 +13,8 @@ bp = Blueprint("main", __name__, url_prefix="/")
 
 @bp.route("/", methods=["GET"])
 def drawing():
-	return render_template("drawing.html")
+	predictions = []
+	return render_template("drawing.html", predictions=predictions)
 
 @bp.route("/", methods=["POST"])
 def prediction():

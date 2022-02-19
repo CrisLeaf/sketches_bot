@@ -7,46 +7,50 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <title>Sketchs Bot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital@1&family=Rubik:wght@400;700&display=swap"
+    rel="stylesheet">
 </head>
 <body>
-<section class="left">
-  <div>
-    <div class="left-title">SKETCHS BOT</div>
-    <form method="post" action="{{ url_for('main.prediction') }}" id="prediction-form">
-
-      <input type="hidden" id="canvasimg" name="canvasimg">
-      <input type="hidden" id="canvasdata" name="canvasdata" value="{{ canvasdata }}">
-      <canvas id="canvas"></canvas>
-      <button onClick="submit_canvas()" type="submit" class="button">Predict</button>
-
-    </form>
-    <script src="{{ url_for('static', filename='canvas.js') }}"></script>
-  </div>
-  <div class="row">
-    <div class="tools">
-      <button onclick="undo_last()" type="button" class="button">Undo</button>
-      <button onClick="clear_canvas()" type="button" class="button">Clear</button>
-
+<div class="content">
+  <section class="left">
+    <div>
+      <div class="left-title">SKETCHS BOT</div>
+      <form method="post" action="{{ url_for('main.prediction') }}" id="prediction-form">
+        <input type="hidden" id="canvasimg" name="canvasimg">
+        <input type="hidden" id="canvasdata" name="canvasdata" value="{{ canvasdata }}">
+        <canvas id="canvas"></canvas>
+        <button onClick="submit_canvas()" type="submit" class="button">Predict</button>
+      </form>
+      <script src="{{ url_for('static', filename='canvas.js') }}"></script>
     </div>
-  </div>
-</section>
-<section class="right">
-  <div class="description">
-    Dibuja un objeto y el Bot lo adivinará.
-  </div>
-  <div class="image">
-    <img src="{{ url_for('static', filename='hand_image.png') }}"/>
-  </div>
-  <div class="prediction">
-    Predicción
-    <div class="predicted">
-      <ol start="1">
-        <li>{{ predictions[0] }}</li>
-        <li>{{ predictions[1] }}</li>
-        <li>{{ predictions[2] }}</li>
-      </ol>
+    <div class="row">
+      <div class="tools">
+        <button onclick="undo_last()" type="button" class="button">Undo</button>
+        <button onClick="clear_canvas()" type="button" class="button">Clear</button>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+  <section class="right">
+    <div class="description">
+      Dibuja un objeto y el Bot lo adivinará.
+    </div>
+    <div class="image">
+      <img src="{{ url_for('static', filename='hand_image.png') }}"/>
+    </div>
+    <div class="prediction">
+      Predicción:
+      <div>
+        <ol start="1">
+          <li><span class="predicted">{{ predictions[0] }}</span></li>
+          <li><span class="predicted">{{ predictions[1] }}</span></li>
+          <li><span class="predicted">{{ predictions[2] }}</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+</div>
 </body>
 </html>
