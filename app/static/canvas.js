@@ -1,6 +1,6 @@
 const canvas = document.getElementById("canvas");
-canvas.width = 576;
-canvas.height = 576;
+canvas.width = 550;
+canvas.height = 550;
 
 let context = canvas.getContext("2d");
 let start_background_color = "white";
@@ -8,7 +8,7 @@ context.fillStyle = start_background_color;
 context.fillRect(0, 0, canvas.width, canvas.height);
 
 let draw_color = "black";
-let draw_width = "18";
+let draw_width = "15";
 let is_drawing = false;
 
 let restore_array = [];
@@ -23,6 +23,21 @@ canvas.addEventListener("touchend", stop, false);
 canvas.addEventListener("mouseup", stop, false);
 canvas.addEventListener("mouseout", stop, false);
 
+// Re-load image on submit
+const canvasdata = document.querySelector("#canvasdata").value;
+if (canvasdata) {
+	const image = new Image();
+	image.onload = () => {
+		context.drawImage(image, 0, 0);
+	};
+	image.src = canvasdata;
+
+} else {
+	context.fillStyle = start_background_color;
+	context.fillRect(0, 0, canvas.width, canvas.height)
+}
+
+// Drawing Fucntions
 function start (event) {
 	is_drawing = true;
 	context.beginPath();
@@ -79,5 +94,8 @@ function undo_last () {
 
 function submit_canvas () {
 	const dataURL = canvas.toDataURL();
-	imgConverted.src = dataURL;
+//	imgConverted.src = dataURL;
+	document.getElementById("canvasimg").value = dataURL;
+	document.getElementById("restore_array").value = restore_array;
 }
+

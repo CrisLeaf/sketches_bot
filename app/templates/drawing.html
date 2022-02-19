@@ -12,12 +12,13 @@
 <section class="left">
   <div>
     <div class="left-title">SKETCHS BOT</div>
-    <form method="post">
+    <form method="post" action="{{ url_for('main.prediction') }}" id="prediction-form">
+
+      <input type="hidden" id="canvasimg" name="canvasimg">
+      <input type="hidden" id="canvasdata" name="canvasdata" value="{{ canvasdata }}">
       <canvas id="canvas"></canvas>
-      <button onClick="submit_canvas()" type="button" class="button"
-              action="{{ url_for('main.prediction') }}">
-        Predict
-      </button>
+      <button onClick="submit_canvas()" type="submit" class="button">Predict</button>
+
     </form>
     <script src="{{ url_for('static', filename='canvas.js') }}"></script>
   </div>
@@ -40,13 +41,12 @@
     Predicción
     <div class="predicted">
       <ol start="1">
-        <li>predicción 1</li>
-        <li>predicción 2</li>
-        <li>predicción 3</li>
+        <li>{{ predictions[0] }}</li>
+        <li>{{ predictions[1] }}</li>
+        <li>{{ predictions[2] }}</li>
       </ol>
     </div>
   </div>
-  <img src="" id="imgConverted"/>
 </section>
 </body>
 </html>
