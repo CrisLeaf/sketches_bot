@@ -228,7 +228,7 @@ all_categories = {
 	226: "Piscina",
 	227: "Paleta de hielo",
 	228: "Tarjeta postal",
-	229: "Papa",
+	229: "Patata",
 	230: "Toma de corriente",
 	231: "Monedero",
 	232: "Conejo",
