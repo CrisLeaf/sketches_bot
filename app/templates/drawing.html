@@ -22,14 +22,14 @@
         <input type="hidden" id="canvasimg" name="canvasimg">
         <input type="hidden" id="canvasdata" name="canvasdata" value="{{ canvasdata }}">
         <canvas id="canvas"></canvas>
-        <button onClick="submit_canvas()" type="submit" class="button">Predict</button>
+        <button onClick="submit_canvas()" type="submit" class="button pred-button">Predecir</button>
       </form>
       <script src="{{ url_for('static', filename='canvas.js') }}"></script>
     </div>
     <div class="row">
       <div class="tools">
-        <button onclick="undo_last()" type="button" class="button">Undo</button>
-        <button onClick="clear_canvas()" type="button" class="button">Clear</button>
+        <button onclick="undo_last()" type="button" class="button undo-button">Deshacer</button>
+        <button onClick="clear_canvas()" type="button" class="button clear-button">Limpiar</button>
       </div>
     </div>
   </section>

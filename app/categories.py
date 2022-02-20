@@ -2,7 +2,7 @@ all_categories = {
 	0: "Avión",
 	1: "Reloj despertador",
 	2: "Ambulancia",
-	3: "Ángle",
+	3: "Ángel",
 	4: "Migración Animal",
 	5: "Hormiga",
 	6: "Yunque",
