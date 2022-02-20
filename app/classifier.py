@@ -14,4 +14,4 @@ BASE_SIZE = 550
 model = MobileNet(input_shape=(size, size, 1), alpha=1, weights=None, classes=num_classes)
 model.compile(optimizer=Adam(learning_rate=0.002), loss="categorical_crossentropy")
 
-model.load_weights("app/classifier_weights.h5")
+model.load_weights("app/static/classifier_weights.h5")

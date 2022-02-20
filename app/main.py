@@ -14,10 +14,13 @@ bp = Blueprint("main", __name__, url_prefix="/")
 @bp.route("/", methods=["GET"])
 def drawing():
 	predictions = []
-	return render_template("drawing.html", predictions=predictions)
+	probas = []
+	return render_template("drawing.html",
+						   predictions=predictions, probas=probas)
 
 @bp.route("/", methods=["POST"])
 def prediction():
+	print("Enter prediction func")
 	canvasdata = request.form["canvasimg"]
 	input_image = request.form["canvasimg"].split(",")[1]
 	
@@ -33,15 +36,17 @@ def prediction():
 	input_image = np.expand_dims(input_image, axis=0)
 	input_image = np.expand_dims(input_image, axis=3)
 	
-	prediction = model.predict(input_image, batch_size=128, verbose=1)
-	prediction_probas = np.sort(-prediction, axis=1)[:, :3]
-	prediction = pd.DataFrame(np.argsort(-prediction, axis=1)[:, :3], columns=['a', 'b', 'c'])
-	prediction = prediction.replace(all_categories)
+	predictions = model.predict(input_image, batch_size=128, verbose=1)
+	probas = np.sort(-predictions, axis=1)[:, :3]
+	probas = [f"{-proba:.1%}" for proba in probas[0]]
 	
-	predictions = [
-		f"{pred} {'.' * (50 - len(str(pred)))} {-proba:.1%}"
-		for pred, proba in zip(prediction.values[0], prediction_probas[0])
-	]
+	predictions = pd.DataFrame(np.argsort(-predictions, axis=1)[:, :3], columns=['a', 'b', 'c'])
+	predictions = predictions.replace(all_categories)
+	predictions = predictions.values[0]
+	
+	if np.amax(input_image) == -1.0:
+		predictions = []
+		probas = []
 	
 	return render_template("drawing.html", canvasdata=canvasdata,
-						   predictions=predictions)
+						   predictions=predictions, probas=probas)

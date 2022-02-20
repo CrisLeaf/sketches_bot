@@ -11,6 +11,19 @@ body {
 	text-align: center;
 }
 
+.fnt-roboto {
+	font-family: "Roboto Serif", sans-serif;
+}
+
+a {
+	color: #555;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #888;
+	transition: color 0.2s ease;
+}
 
 /******* LEFT ************************************************************************************/
 
@@ -21,6 +34,12 @@ body {
 .left-title {
 	font-size: 48px;
 	padding: 10px;
+}
+
+.previous-page {
+	font-size: 30px;
+	float: left;
+	padding-top: 20px;
 }
 
 
@@ -37,22 +56,38 @@ body {
 	margin: 4px;
 	border: 0;
 }
+.button:hover {
+	cursor: pointer;
+}
 
 .undo-button {
 	background-color: #95A7D5;
 	margin-left: 0px;
 	float: left;
 }
+.undo-button:hover {
+	background-color: #788FC9;
+	transition: background-color 0.2s ease;
+}
 .clear-button {
 	background-color: #D595A7;
 	border-color: yellow;
 	float: left;
 }
+.clear-button:hover {
+	background-color: #C9788F;
+	transition: background-color 0.2s ease;
+}
+
 .pred-button {
 	background-color: #A7D595;
 	position: absolute;
 	display: block;
 	margin-left: 458px;
+}
+.pred-button:hover {
+	background-color: #8FC978;
+	transition: background-color 0.2s ease;
 }
 
 /******* RIGHT ***********************************************************************************/
@@ -63,6 +98,7 @@ body {
 .description {
 	font-size: 25px;
 	margin-top: 90px;
+	margin-left: 10px;
 }
 
 .prediction {
@@ -70,12 +106,9 @@ body {
 	text-align: left;
 }
 
-.predicted {
-	font-family: "Roboto Serif", sans-serif;
-}
-
-ol {
-	padding: 0;
+.pred-title {
+	font-size: 25px;
+	padding: 0 0 20px 0;
 }
 
 img {
@@ -83,9 +116,41 @@ img {
 	height: 300px;
 }
 
-li {
-	display: list-item;
-	list-style-position: inside;
-
+.aln-right {
+	text-align: right;
 }
 
+.entry {
+	display: grid;
+	grid-template-columns: auto max-content;
+	grid-template-areas: "predicted proba";
+	align-items: end;
+}
+
+.predicted {
+	grid-area: predicted;
+	position: relative;
+	overflow: hidden;
+	white-space: nowrap;
+	margin: 5px;
+}
+.predicted::after {
+	position: absolute;
+	overflow: hidden;
+	content: " . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ";
+	text-align: right;
+}
+.proba {
+	grid-area: proba;
+}
+
+.source-code {
+	text-align: right;
+	color: #555;
+	margin: 40px 0 0 0;
+	float: right;
+}
+.fa-github {
+	color: #555;
+	font-size: 25px;
+}

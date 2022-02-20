@@ -12,17 +12,25 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital@1&family=Rubik:wght@400;700&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
 <div class="content">
   <section class="left">
     <div>
+      <a href="https://protected-fjord-89393.herokuapp.com/" class="previous-page">
+        <i class="fas fa-arrow-left"></i>
+      </a>
       <div class="left-title">SKETCHS BOT</div>
       <form method="post" action="{{ url_for('main.prediction') }}" id="prediction-form">
         <input type="hidden" id="canvasimg" name="canvasimg">
         <input type="hidden" id="canvasdata" name="canvasdata" value="{{ canvasdata }}">
         <canvas id="canvas"></canvas>
-        <button onClick="submit_canvas()" type="submit" class="button pred-button">Predecir</button>
+        <button onClick="submit_canvas()" type="submit" class="button pred-button">Predecir
+        </button>
       </form>
       <script src="{{ url_for('static', filename='canvas.js') }}"></script>
     </div>
@@ -41,14 +49,26 @@
       <img src="{{ url_for('static', filename='hand_image.png') }}"/>
     </div>
     <div class="prediction">
-      Predicción:
-      <div>
-        <ol start="1">
-          <li><span class="predicted">{{ predictions[0] }}</span></li>
-          <li><span class="predicted">{{ predictions[1] }}</span></li>
-          <li><span class="predicted">{{ predictions[2] }}</span></li>
-        </ol>
+      <div class="pred-title">Predicción:</div>
+      <div class="toc">
+        <div class="entry">
+          <div class="predicted">1. <span class="fnt-roboto">{{ predictions[0] }}</span></div>
+          <div class="proba fnt-roboto">{{ probas[0] }}</div>
+        </div>
+        <div class="entry">
+          <div class="predicted">2. <span class="fnt-roboto">{{ predictions[1] }}</span></div>
+          <div class="proba fnt-roboto">{{ probas[1] }}</div>
+        </div>
+        <div class="entry">
+          <div class="predicted">3. <span class="fnt-roboto">{{ predictions[2] }}</span></div>
+          <div class="proba fnt-roboto">{{ probas[2] }}</div>
+        </div>
       </div>
+    </div>
+    <div class="source-code">
+      <a href="https://github.com/CrisLeaf/sketches_bot" target="_blank">
+        Código Fuente: <i class="fab fa-github"></i>
+      </a>
     </div>
   </section>
 </div>
