@@ -1,14 +1,69 @@
 const canvas = document.getElementById("canvas");
-canvas.width = 550;
-canvas.height = 550;
 
+function resizeCanvas () {
+	if (1800 < window.screen.width && window.screen.width <= 2100) {
+		canvas.width = 640;
+		canvas.height = 640;
+	} else if (1500 < window.screen.width && window.screen.width <= 1800) {
+		canvas.width = 512;
+		canvas.height = 512;
+	} else if (1200 < window.screen.width && window.screen.width <= 1500) {
+		canvas.width = 384;
+		canvas.height = 384;
+	} else if (1000 < window.screen.width && window.screen.width <= 1200) {
+		canvas.width = 320;
+		canvas.height = 320;
+	} else if (780 < window.screen.width && window.screen.width <= 1000) {
+        canvas.width = 704;
+        canvas.height = 704;
+    } else if (700 < window.screen.width && window.screen.width <= 780) {
+        canvas.width = 640;
+        canvas.height = 640;
+    } else if (580 < window.screen.width && window.screen.width <= 700) {
+        canvas.width = 512;
+        canvas.height = 512;
+    } else if (500 < window.screen.width && window.screen.width <= 580) {
+        canvas.width = 448;
+        canvas.height = 448;
+    } else if (400 < window.screen.width && window.screen.width <= 500) {
+        canvas.width = 384;
+        canvas.height = 384;
+    } else if (350 < window.screen.width && window.screen.width <= 400) {
+        canvas.width = 320;
+        canvas.height = 320;
+    } else if (window.screen.width && window.screen.width <= 350) {
+        canvas.width = 256;
+        canvas.height = 256;
+	} else {
+		canvas.width = 768;
+		canvas.height = 768;
+	}
+
+	let context = canvas.getContext("2d");
+    let start_background_color = "white";
+    context.fillStyle = start_background_color;
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    let draw_color = "black";
+    let draw_width = canvas.width / 32;
+    let is_drawing = false;
+
+    let restore_array = [];
+    let index = -1;
+}
+
+resizeCanvas();
+
+window.onresize = function () {
+	resizeCanvas();
+}
 let context = canvas.getContext("2d");
 let start_background_color = "white";
 context.fillStyle = start_background_color;
 context.fillRect(0, 0, canvas.width, canvas.height);
 
 let draw_color = "black";
-let draw_width = "15";
+let draw_width = canvas.width / 32;
 let is_drawing = false;
 
 let restore_array = [];
@@ -70,7 +125,6 @@ function stop (event) {
 		restore_array.push(context.getImageData(0, 0, canvas.width, canvas.height));
 		index += 1;
 	}
-	console.log(restore_array);
 }
 
 function clear_canvas () {
@@ -94,7 +148,6 @@ function undo_last () {
 
 function submit_canvas () {
 	const dataURL = canvas.toDataURL();
-//	imgConverted.src = dataURL;
 	document.getElementById("canvasimg").value = dataURL;
 	document.getElementById("restore_array").value = restore_array;
 }

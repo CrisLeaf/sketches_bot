@@ -20,7 +20,6 @@ def drawing():
 
 @bp.route("/", methods=["POST"])
 def prediction():
-	print("Enter prediction func")
 	canvasdata = request.form["canvasimg"]
 	input_image = request.form["canvasimg"].split(",")[1]
 	
