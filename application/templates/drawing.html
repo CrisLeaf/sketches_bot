@@ -25,7 +25,7 @@
         <i class="fas fa-arrow-left"></i>
       </a>
       <div class="left-title">SKETCHS BOT</div>
-      <form method="post" action="{{ url_for('application.prediction', _anchor='source-code') }}"
+      <form method="post" action="{{ url_for('application.prediction', _anchor='pred') }}"
             id="prediction-form">
         <input type="hidden" id="canvasimg" name="canvasimg">
         <input type="hidden" id="canvasdata" name="canvasdata" value="{{ canvasdata }}">
@@ -66,7 +66,7 @@
         </div>
       </div>
     </div>
-    <div class="source-code" id="source-code">
+    <div class="source-code" id="pred">
       <a href="https://github.com/CrisLeaf/sketches_bot" target="_blank">
         Código Fuente: <i class="fab fa-github"></i>
       </a>
