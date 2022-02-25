@@ -3,7 +3,7 @@ import numpy as np
 import cv2
 import base64
 import pandas as pd
-# from .classifier import model
+from .classifier import model
 from .categories import all_categories
 
 
@@ -23,9 +23,7 @@ def prediction():
 	
 	input_image = np.fromstring(base64.b64decode(input_image), np.uint8)
 	input_image = cv2.imdecode(input_image, cv2.IMREAD_COLOR)
-	
 	input_image = cv2.cvtColor(input_image, cv2.COLOR_BGR2GRAY)
-	
 	input_image = cv2.resize(input_image, (64, 64), interpolation=cv2.INTER_LINEAR)
 	
 	input_image = input_image * (-2) / 255. + 1
@@ -33,24 +31,17 @@ def prediction():
 	input_image = np.expand_dims(input_image, axis=0)
 	input_image = np.expand_dims(input_image, axis=3)
 	
-	# predictions = model.predict(input_image, batch_size=128, verbose=1)
-	# probas = np.sort(-predictions, axis=1)[:, :3]
-	# probas = [f"{-proba:.1%}" for proba in probas[0]]
-	#
-	# predictions = pd.DataFrame(np.argsort(-predictions, axis=1)[:, :3], columns=['a', 'b', 'c'])
-	# predictions = predictions.replace(all_categories)
-	# predictions = predictions.values[0]
+	predictions = model.predict(input_image, batch_size=128, verbose=1)
+	probas = np.sort(-predictions, axis=1)[:, :3]
+	probas = [f"{-proba:.1%}" for proba in probas[0]]
 	
-	######## For AWS Tests ######################
-	random_nums = np.random.randint(1, 300, 3)  #
-	print(random_nums)  #
-	return render_template("drawing.html", canvasdata=canvasdata, predictions=random_nums,
-						   probas=[])
-	#############################################
+	predictions = pd.DataFrame(np.argsort(-predictions, axis=1)[:, :3], columns=['a', 'b', 'c'])
+	predictions = predictions.replace(all_categories)
+	predictions = predictions.values[0]
 	
 	if np.amax(input_image) == -1.0:
 		predictions = []
 		probas = []
-
-# return render_template("drawing.html", canvasdata=canvasdata,
-# 					   predictions=predictions, probas=probas)
+	
+	return render_template("drawing.html", canvasdata=canvasdata,
+						   predictions=predictions, probas=probas)
