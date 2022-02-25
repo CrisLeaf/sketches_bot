@@ -99,9 +99,20 @@ function start (event) {
 	if (event.type == "touchstart") {
 		context.moveTo(event.touches[0].clientX - canvas.offsetLeft,
 					   event.touches[0].clientY - canvas.offsetTop);
+
+		context.lineTo(event.touches[0].clientX - canvas.offsetLeft,
+        	           event.touches[0].clientY - canvas.offsetTop);
 	} else {
 		context.moveTo(event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop);
+
+		context.lineTo(event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop);
 	}
+	context.strokeStyle = draw_color;
+    context.lineWidth = draw_width;
+    context.lineCap = "round";
+    context.lineJoin = "round";
+    context.stroke();
+
 	event.preventDefault();
 }
 

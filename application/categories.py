@@ -190,7 +190,7 @@ all_categories = {
 	188: "Ratón",
 	189: "Bigote",
 	190: "Boca",
-	191: "Taza",
+	191: "Tazón",
 	192: "Hongo",
 	193: "Uña",
 	194: "Collar",
