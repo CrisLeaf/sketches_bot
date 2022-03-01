@@ -110,7 +110,7 @@ all_categories = {
 	108: "Ventilador",
 	109: "Pluma",
 	110: "Valla",
-	111: "dedo",
+	111: "Dedo",
 	112: "Grifo de incendio",
 	113: "Chimenea",
 	114: "Camión de Bomberos",
