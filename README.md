@@ -40,7 +40,7 @@ The page was written in HTML and CSS. For the canvas widget (the drawing box) we
 And Python for the user's hand-draw recievement.
 
 The image is recieved in the base64 format, and converted into a NumPy array using OpenCV, to be
-embedded into a TensorFlow's *MobileNet* classifier for get the predictions.
+embedded into a TensorFlow's **MobileNet** classifier for get the predictions.
 
 The classifier was trained with
 the [Quick Draw Doodle Recognition Dataset](https://www.kaggle.com/c/quickdraw-doodle-recognition)
